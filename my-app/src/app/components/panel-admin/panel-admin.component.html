@@ -1,0 +1,267 @@
+<section id="Container">
+  <div id='panel'  class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; height: 38rem;" >
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4">
+          <a href="http://localhost:4200"><img src="../../../assets/Logo.png"  alt="logo" width="200" height="100"></a>          
+        </span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <button (click)="opcion = 'usuarios01'" 
+                  (click)="titulo=!titulo"
+                  class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Usuarios"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
+            </svg>
+            USUARIOS
+          </button>
+        </li>
+        <li>
+          <button (click)="opcion = 'estudiantes01'" 
+                  class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Estudiantes"/></svg>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
+              <path d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z"/>
+            </svg>
+            ESTUDIANTES
+          </button>
+        </li>
+        <li>
+          <button (click)="opcion = 'acudientes'" 
+                  class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/acudientes"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+            </svg>
+            ACUDIENTES
+          </button>
+        </li>
+        <li>
+          <button (click)="opcion = 'inventario01'" 
+                  class="nav-link link-dark">
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Inventario"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+              <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+              <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+            </svg>
+            INVENTARIO
+          </button>
+        </li>
+        
+      </ul> 
+      <hr>
+      <div class="dropdown" *ngFor="let element of usuarios">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+         <strong>{{element.usuario}} </strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+          <li><a class="dropdown-item" href="#">Configuración</a></li>
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+  </div>
+    <div class="b-example-divider"></div>
+
+
+
+  <aside>
+    <div  class = "container bg" [ngSwitch]= "opcion">
+          <h1 *ngIf="titulo" class="titulo" style="margin: 100px;">
+            <em>B</em>
+            <em class="planet left">I</em>
+            <em>E</em>
+            <em>N</em>
+            <em>V</em>
+            <em>E</em>
+            <em>N</em>
+            <em>I</em>
+            <em class="planet right">D</em>
+            <em>O</em>
+          </h1>
+    
+
+      <div class = "container text-success" *ngSwitchCase="'administrador01'" >
+        <H2 class="elegantshadow">Administrador</H2>
+        
+        <table  class="table table-hover">
+          <thead >
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">rol</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Estado de Cuenta</th>
+              <th scope="col">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let usuario of usuarios">
+            <tr>
+              <th scope="row">{{usuario.administradorid}}</th>
+              <td>{{usuario.usuario}} </td>
+              <td>{{usuario.nombre}} </td>
+              <td>{{usuario.estadoCuenta}} </td>
+              <td>{{usuario.correo}} </td>
+              <td>{{usuario.telefono}} </td>
+              <td>{{usuario.rol}} </td>
+           
+              <td> 
+                  <button class="btn" type="button" (click)="eliminarUsuario(usuario.administradorid)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                  </button>
+                  <div *ngIf="!load" class="spinner-border text-info" role="status">
+                    <span class="sr-only"></span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div  class = "container text-success" *ngSwitchCase ="'estudiantes01'" >
+        <h2 class="elegantshadow">ESTUDIANTE</h2>
+       <table class="table table-hover">
+            <thead >
+              <tr>
+                <th scope="col">IDEstudiante</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Número de identificación</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Fecha de nacimiento</th>
+                <th scope="col">Ultimo Grado</th>
+                <th scope="col">Escuela</th>
+                <th scope="col">Horario día</th>
+                <th scope="col">Horario Hora</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Acudiente</th>
+                <th scope="col">Referido</th>
+                <th scope="col">Nombre Referido</th>
+            </thead>
+          
+            <tbody *ngFor="let estudiante of estudiantes" >
+              <tr>
+                <th scope="row">{{estudiante.estudianteid}}</th>
+                <td>{{estudiante.nombre}}</td>
+                <td>{{estudiante.identificacion}}</td>
+                <td>{{estudiante.edad}}</td>
+                <td>{{estudiante.fecha_nacimiento}}</td>
+                <td>{{estudiante.ultimo_grado}}</td>
+                <td>{{estudiante.escuela}}</td>
+                <td>{{estudiante.horario_dia}}</td>
+                <td>{{estudiante.horario_hora}}</td>
+                <td>{{estudiante.acudiente}}</td>
+                <td>{{estudiante.referido}}</td>
+                <td>{{estudiante.nombre_referido}}</td>
+              <td> 
+                  <button class="btn" type="button" (click)="eliminarEstudiante(estudiante.estudianteid)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                  </button>
+                  <div *ngIf="!load" class="spinner-border text-info" role="status">
+                    <span class="sr-only"></span>
+                </div>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+
+      </div>
+      <div class = "container text-success"  *ngSwitchCase ="'Acudientes01'" >
+        <h2 class="elegantshadow">ACUDIENTES</h2>
+        
+          <table  class="table table-hover" >
+            <thead >
+              <tr>
+                <th scope="col">IDAcudiente</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">apellido </th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Forma de Pago</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let acudiente of acudientes">
+              <tr>
+                <td>{{acudiente.acudienteid}}</td>
+                <td>{{acudiente.nombre}}</td>
+                <td>{{acudiente.apellido}}</td>
+                <td>{{acudiente.cedula}}</td>
+                <td>{{acudiente.correo}}</td>
+                <td>{{acudiente.direccion}}</td>
+                <td>{{acudiente.telefono}}</td>
+                <td>{{acudiente.forma_pago}}</td>
+              <td> 
+                  <button class="btn" type="button" (click)="eliminarAcudiente(acudiente.acudienteid)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                  </button>
+                  <div *ngIf="!load" class="spinner-border text-info" role="status">
+                    <span class="sr-only"></span>
+                </div>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+
+      </div>
+      <div class = "container text-success"  *ngSwitchCase ="'inventario01'" >
+        <h2 class="elegantshadow">INVENTARIO</h2>       
+          <table  class="table table-hover">
+            <thead >
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let inventario of inventarios" >
+              <tr>
+                <th  class="tam" scope="row">{{inventario.articuloid}} </th>
+                <td class="tam">{{inventario.nombre}}</td>
+                <td class="tam">{{inventario.precio}}</td>
+                <td class="tam">{{inventario.cantidad}}</td>
+               
+              <td> 
+                  <button class="btn" type="button" (click)="eliminarInventario(inventario.articuloid)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                  </button>
+                  <div *ngIf="!load" class="spinner-border text-info" role="status">
+                    <span class="sr-only"></span>
+                </div>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+
+      </div>
+      
+      <div class = "container text-success"  *ngSwitchCase="'default'">
+
+      </div>
+    </div>
+  </aside>      
+
+</section>

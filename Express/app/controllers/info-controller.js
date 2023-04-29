@@ -17,7 +17,6 @@ let usuarios = async (req, res) => {
     });
 };
 let estudiantes = async (req, res) => {
-  console.log("llegue y me fui")
   db.estudiantesInfo()
   .then((result) => {
     return res.status(200).json({
@@ -32,11 +31,10 @@ let estudiantes = async (req, res) => {
 
 
 let acudientes = async (req, res) => {
-  
   db.acudientesInfo()
   .then((result) => {
     return res.status(200).json({
-      solicitudes: result
+      acudientes: result
     });
     
   })
@@ -47,11 +45,10 @@ let acudientes = async (req, res) => {
 
 
 let productos = async (req, res) => {
-  
   db.productosInfo()
   .then((result) => {
     return res.status(200).json({
-      publicidades: result
+     
     });
     
   })

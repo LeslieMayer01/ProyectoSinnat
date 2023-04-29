@@ -232,7 +232,7 @@ function estudiantesInfo(){
     const client = connection();
     client.connect((err) => {
       if (err) throw err;
-      console.log("Connected to MySQL Server!");
+      console.log("Connected to PG Server!");
     });
 
     client.query('SELECT * FROM estudiantes').then(response => {
@@ -248,36 +248,39 @@ function estudiantesInfo(){
 }
 function acudientesInfo(){
   return new Promise((resolve,reject)=>{
-    const mysqlConnection = connection();
-    mysqlConnection.connect((err) => {
+    const client = connection();
+    client.connect((err) => {
       if (err) throw err;
-      console.log("Connected to MySQL Server!");
+      console.log("Connected to PG Server!");
     });
-    let select = 'SELECT * FROM acudientes';
-    let query = mysql.format(select);
-    mysqlConnection.query(query, (error, result) => {
-    if(error) reject (error);
-    console.log(error);
-    mysqlConnection.end();
-    resolve(result);
-  });
+
+    client.query('SELECT * FROM acudientes').then(response => {
+      console.log(response.rows)
+      resolve(response.rows);
+      client.end();
+    }).catch(err =>{
+      console.log(err);
+      client.end();
+    })
+    
   });
 }
 function productosInfo(){
   return new Promise((resolve,reject)=>{
-    const mysqlConnection = connection();
-    mysqlConnection.connect((err) => {
+    const client = connection();
+    client.connect((err) => {
       if (err) throw err;
-      console.log("Connected to MySQL Server!");
+      console.log("Connected to PG Server!");
     });
-    let select = 'SELECT * FROM inventario';
-    let query = mysql.format(select);
-    mysqlConnection.query(query, (error, result) => {
-    if(error) reject (error);
-    console.log(error);
-    mysqlConnection.end();
-    resolve(result);
-  });
+
+    client.query('SELECT * FROM inventario').then(response => {
+      console.log(response.rows)
+      resolve(response.rows);
+      client.end();
+    }).catch(err =>{
+      console.log(err);
+      client.end();
+    })
   });
 }
 
@@ -301,21 +304,19 @@ function consultaDateAdmin(data){
 }
 function dateEstudiantes(data){
   return new Promise((resolve,reject)=>{
-    const mysqlConnection = connection();
-    mysqlConnection.connect((err) => {
+    const client = connection();
+    client.connect((err) => {
       if (err) throw err;
-      console.log("Connected to MySQL Server!");
+      console.log("Connected to PG Server!");
     });
-    let select = 'SELECT * FROM estudiantes WHERE estudianteid =?';
-    let query = mysql.format(select,[data]);
-    mysqlConnection.query(query, (error, result) => {
-    if(error) reject (error);
-    console.log(error);
-    mysqlConnection.end();
-    console.log(result);
-    resolve(result);
-
-  });
+    client.query(`SELECT * FROM estudiantes WHERE estudianteid =${data}`).then(response => {
+      console.log(response.rows)
+      resolve(response.rows);
+      client.end();
+    }).catch(err =>{
+      console.log(err);
+      client.end();
+    })
   });
 }
 function dateAcudientes(data){
@@ -377,20 +378,19 @@ function deleteUser(id){
 }
 function deleteEstudiantes(id){
   return new Promise((resolve,reject)=>{
-    const mysqlConnection = connection();
-    mysqlConnection.connect((err) => {
+    const client = connection();
+    client.connect((err) => {
       if (err) throw err;
-      console.log("Connected to MySQL Server!");
+      console.log("Connected to PG Server!");
     });
-    let DELETE = 'DELETE FROM estudiantes WHERE estudianteid =?';
-    let query = mysql.format(DELETE,id);
-    mysqlConnection.query(query, (error, result) => {
-    if(error) reject (error);
-    console.log(error);
-    mysqlConnection.end();
-    resolve(result);
-    console.log(result);
-  });
+    client.query(`DELETE FROM estudiantes WHERE estudianteid =${id}`).then(response => {
+      console.log(response.rows)
+      resolve(response.rows);
+      client.end();
+    }).catch(err =>{
+      console.log(err);
+      client.end();
+    })
   });
 }
 function deleteAcudientes(id){

@@ -36,7 +36,7 @@ import { PanelAdmonComponent } from './containers/panel-admon/panel-admon.compon
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-   // NgbModule,
+    //NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,16 +13,23 @@ export class ClientService {
 
   BASE_API: string=environment.BASE_API
   estudiantes:Estudiantes [] = [];
+  acudientes:Acudientes [] = [];
+  inventarios:Inventarios [] = [];
   constructor(private http: HttpClient) { }
 
   getRequestdatosEstudiantes() {
-    
- 
     const result = this.http.get(`${this.BASE_API}/estudiantesInfo`)
-    console.log("Moriremos")
-    console.log(result)
     return this.http.get(`${this.BASE_API}/estudiantesInfo`)
   }
+  getRequestdatosAcudientes() {
+    const result = this.http.get(`${this.BASE_API}/acudientesInfo`)
+    return this.http.get(`${this.BASE_API}/acudientesInfo`)
+  }
+  getRequestdatosInventario() {
+    const result = this.http.get(`${this.BASE_API}/productosInfo`)
+    return this.http.get(`${this.BASE_API}/productosInfo`)
+  }
+
   getRequestdateEstudiantes(route:any) {
     
     let config1:any={

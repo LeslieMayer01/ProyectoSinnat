@@ -1,16 +1,16 @@
 <section id="Container">
   <div id='panel'  class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; height: 38rem;" >
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         <span class="fs-4">
           <a href="http://localhost:4200"><img src="../../../assets/Logo.png"  alt="logo" width="200" height="100"></a>          
         </span>
-      </a>
-      <hr>
+    </a>
+    <hr>
       <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
+        <li class="list-group-item">
           <button (click)="opcion = 'usuarios01'" 
-                  (click)="titulo=!titulo"
+                  (click)="titulo=false"
                   class="nav-link link-dark">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Usuarios"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
@@ -22,9 +22,9 @@
         </li>
         <li>
           <button (click)="opcion = 'estudiantes01'" 
+                  (click)="titulo=false"
                   class="nav-link link-dark">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Estudiantes"/></svg>
-            
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
               <path d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z"/>
             </svg>
@@ -32,7 +32,8 @@
           </button>
         </li>
         <li>
-          <button (click)="opcion = 'acudientes'" 
+          <button (click)="opcion = 'acudientes01'" 
+                  (click)="titulo=false"
                   class="nav-link link-dark">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/acudientes"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -43,8 +44,9 @@
         </li>
         <li>
           <button (click)="opcion = 'inventario01'" 
+                  (click)="titulo=false"
                   class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Inventario"/></svg>
+            <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Inventarios"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
               <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
               <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
@@ -54,8 +56,8 @@
         </li>
         
       </ul> 
-      <hr>
-      <div class="dropdown" *ngFor="let element of usuarios">
+    <hr>
+      <div  class="dropdown" *ngFor="let element of usuarios">
         <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
          <strong>{{element.usuario}} </strong>
         </a>
@@ -67,27 +69,24 @@
         </ul>
       </div>
   </div>
-    <div class="b-example-divider"></div>
-
-
-
+  <div class="b-example-divider"></div>
   <aside>
-    <div  class = "container bg" [ngSwitch]= "opcion">
-          <h1 *ngIf="titulo" class="titulo" style="margin: 100px;">
-            <em>B</em>
-            <em class="planet left">I</em>
-            <em>E</em>
-            <em>N</em>
-            <em>V</em>
-            <em>E</em>
-            <em>N</em>
-            <em>I</em>
-            <em class="planet right">D</em>
-            <em>O</em>
-          </h1>
-    
-
-      <div class = "container text-success" *ngSwitchCase="'administrador01'" >
+    <div><h1 *ngIf="titulo" class="titulo" style="margin: 100px;">
+      <em>B</em>
+      <em class="planet left">I</em>
+      <em>E</em>
+      <em>N</em>
+      <em>V</em>
+      <em>E</em>
+      <em>N</em>
+      <em>I</em>
+      <em class="planet right">D</em>
+      <em>O</em>
+      
+    </h1>
+    </div>
+      <div  class = "container bg" [ngSwitch]= "opcion">
+      <div class = "container text-success" *ngSwitchCase="'usuarios01'" >
         <H2 class="elegantshadow">Administrador</H2>
         
         <table  class="table table-hover">
@@ -128,11 +127,9 @@
           </tbody>
         </table>
       </div>
-
-
       <div  class = "container text-success" *ngSwitchCase ="'estudiantes01'" >
-        <h2 class="elegantshadow">ESTUDIANTE</h2>
-       <table class="table table-hover">
+        <h2 class="elegantshadow">ESTUDIANTES</h2>
+          <table class="table table-hover">
             <thead >
               <tr>
                 <th scope="col">IDEstudiante</th>
@@ -180,9 +177,8 @@
           </table>
 
       </div>
-      <div class = "container text-success"  *ngSwitchCase ="'Acudientes01'" >
+      <div class = "container text-success"  *ngSwitchCase ="'acudientes01'" >
         <h2 class="elegantshadow">ACUDIENTES</h2>
-        
           <table  class="table table-hover" >
             <thead >
               <tr>
@@ -236,10 +232,10 @@
             </thead>
             <tbody *ngFor="let inventario of inventarios" >
               <tr>
-                <th  class="tam" scope="row">{{inventario.articuloid}} </th>
-                <td class="tam">{{inventario.nombre}}</td>
-                <td class="tam">{{inventario.precio}}</td>
-                <td class="tam">{{inventario.cantidad}}</td>
+                <th scope="row">{{inventario.articuloid}} </th>
+                <td >{{inventario.nombre}}</td>
+                <td >{{inventario.precio}}</td>
+                <td >{{inventario.cantidad}}</td>
                
               <td> 
                   <button class="btn" type="button" (click)="eliminarInventario(inventario.articuloid)">
@@ -263,5 +259,4 @@
       </div>
     </div>
   </aside>      
-
 </section>

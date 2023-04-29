@@ -7,7 +7,6 @@ import { Acudientes } from '../../interface/info.interface';
 import { Inventarios } from '../../interface/info.interface';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,15 +19,9 @@ export class PanelAdminComponent implements OnInit {
   form!: FormGroup;
   load: boolean = true;
 
-  /*usuarios01: boolean = false;
-  mascotas01: boolean = false;
-  solicitudes01: boolean = false;
-  publicidades01: boolean = false;
-  adopciones01: boolean = false;*/
-
   opcion = 'default'
   
-  titulo: boolean = true;
+  titulo: boolean = true ;
   usuarios : Usuarios [] = [];
   title = "Estudiantes"
   estudiantes : Estudiantes [] = [];
@@ -61,6 +54,23 @@ export class PanelAdminComponent implements OnInit {
       }
     )
 
+    this.client.getRequestdatosAcudientes().subscribe(
+      (res:any)=>{
+        this.acudientes = res.acudientes;
+      },
+      (error:any)=>{
+        console.log(error.status);
+      }
+    )
+    this.client.getRequestdatosInventario().subscribe(
+      (res:any)=>{
+        this.inventarios = res.inventarios;
+      },
+      (error:any)=>{
+        console.log(error.status);
+      }
+    )
+
     this.client.getRequestUsuario().subscribe(
       (res:any)=>{
         this.usuarios = res.usuario;
@@ -70,25 +80,7 @@ export class PanelAdminComponent implements OnInit {
         console.log(error.status);
       }
     )
-    this.client.getRequestAcudiente().subscribe(
-      (res:any)=>{
-        this.acudientes = res.acudiente;
-        console.log(this.acudientes);
-      },
-      (error:any)=>{
-        console.log(error.status);
-      }
-    )
-    this.client.getRequestInventario().subscribe(
-      (res:any)=>{
-        this.inventarios = res.inventario;
-        console.log(this.inventarios);
-      },
-      (error:any)=>{
-        console.log(error.status);
-      }
-    )
-    
+        
   }
   // eliminarUsuario(id:number){
   //   console.log("Hago peticion por delete al server para eliminar el user de id: ", id);
@@ -258,7 +250,7 @@ export class PanelAdminComponent implements OnInit {
           )
           console.log(error.status);          
         })
-      }
+  }
   
   actualizaracudiente(correo:any){
     this.client.update(`${this.BASE_API}/updateAcudiente`, correo)
@@ -308,7 +300,7 @@ export class PanelAdminComponent implements OnInit {
           )
           console.log(error.status);          
         })
-      }
+  }
   
   actualizarInventario(id:any){
     this.client.update(`${this.BASE_API}/updateInventario`, id)
@@ -331,7 +323,5 @@ export class PanelAdminComponent implements OnInit {
         })
   }
  
-  
-
 }
 

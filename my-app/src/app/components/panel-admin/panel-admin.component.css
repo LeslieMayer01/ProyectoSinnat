@@ -57,7 +57,7 @@ text-rendering: optimizeLegibility;
 
 
 button:hover{
-    background: #3CACAE;
+    background: #b3bbbb;
     width: 100%;
 }
 
@@ -90,8 +90,7 @@ td{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: black;
-    color: #ccc;
+    color: black;
   }
   
   

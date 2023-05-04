@@ -11,7 +11,7 @@
         <li class="list-group-item">
           <button (click)="opcion = 'usuarios01'" 
                   (click)="titulo=false"
-                  class="nav-link link-dark">
+                  class="nav-link link-dark button-hover">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Usuarios"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -23,7 +23,7 @@
         <li>
           <button (click)="opcion = 'estudiantes01'" 
                   (click)="titulo=false"
-                  class="nav-link link-dark">
+                  class="nav-link link-dark button-hover">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Estudiantes"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
               <path d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z"/>
@@ -34,7 +34,7 @@
         <li>
           <button (click)="opcion = 'acudientes01'" 
                   (click)="titulo=false"
-                  class="nav-link link-dark">
+                  class="nav-link link-dark button-hover">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/acudientes"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
               <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
@@ -45,7 +45,7 @@
         <li>
           <button (click)="opcion = 'inventario01'" 
                   (click)="titulo=false"
-                  class="nav-link link-dark">
+                  class="nav-link link-dark button-hover">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="http://localhost:4200/panelAdmin/Inventarios"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
               <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
@@ -87,18 +87,16 @@
     </div>
       <div  class = "container bg" [ngSwitch]= "opcion">
       <div class = "container text-success" *ngSwitchCase="'usuarios01'" >
-        <H2 class="elegantshadow">Administrador</H2>
-        
+        <H2 class="elegantshadow">Usuarios</H2>
         <table  class="table table-hover">
           <thead >
             <tr>
               <th scope="col">Id</th>
               <th scope="col">Usuario</th>
               <th scope="col">Nombre</th>
-              <th scope="col">rol</th>
-              <th scope="col">Telefono</th>
               <th scope="col">Correo</th>
-              <th scope="col">Estado de Cuenta</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">rol</th>
               <th scope="col">Eliminar</th>
             </tr>
           </thead>
@@ -107,11 +105,9 @@
               <th scope="row">{{usuario.administradorid}}</th>
               <td>{{usuario.usuario}} </td>
               <td>{{usuario.nombre}} </td>
-              <td>{{usuario.estadoCuenta}} </td>
               <td>{{usuario.correo}} </td>
               <td>{{usuario.telefono}} </td>
               <td>{{usuario.rol}} </td>
-           
               <td> 
                   <button class="btn" type="button" (click)="eliminarUsuario(usuario.administradorid)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -126,9 +122,11 @@
             </tr>
           </tbody>
         </table>
+                 
       </div>
       <div  class = "container text-success" *ngSwitchCase ="'estudiantes01'" >
         <h2 class="elegantshadow">ESTUDIANTES</h2>
+        <div>
           <table class="table table-hover">
             <thead >
               <tr>
@@ -146,7 +144,6 @@
                 <th scope="col">Referido</th>
                 <th scope="col">Nombre Referido</th>
             </thead>
-          
             <tbody *ngFor="let estudiante of estudiantes" >
               <tr>
                 <th scope="row">{{estudiante.estudianteid}}</th>
@@ -170,12 +167,101 @@
                   </button>
                   <div *ngIf="!load" class="spinner-border text-info" role="status">
                     <span class="sr-only"></span>
-                </div>
+                  </div>
               </td>
               </tr>
             </tbody>
           </table>
-
+        </div>  
+        <div>
+          <button class="btn btn-outline-secondary" type="submit" (click)="reqEstudiante()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="margin-right: 0.6rem"> 
+            <strong>Nuevo Estudiantes</strong>
+          </button>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+                <h4 id="offcanvasRightLabel">Ingresar Nuevo Estudiante</h4>
+                <hr>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Nombre completo</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Name" formControlName="nombre" aria-label="First name">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Identificación</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Identification" formControlName="identificacion" aria-label="Identification">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Edad</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="age" formControlName="edad" aria-label="age">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Fecha de nacimiento</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Birthdate" formControlName="fechaDeNacimiento" aria-label="Birthdate">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Último grado</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="last grade" formControlName="ultimoGrado" aria-label="last grade">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Escuela</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="School" formControlName="Escuela" aria-label="School">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Referido</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="referred" formControlName="Referido" aria-label="referred">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Nombre Referido</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="referring name" formControlName="nombreReferido" aria-label="referring name">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Horario Dia</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Schedule Day" formControlName="horarioDia" aria-label="Schedule Day">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Horario Hora</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Schedule Hour" formControlName="horarioHora" aria-label="Schedule Hour">
+                </div>  
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Acudiente</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="attendant" formControlName="Acudiente" aria-label=" attendant">
+                </div>  
+              </div>
+              <!--<select class="form-select" aria-label="Default select example">
+                <option selected>Tipo de documento</option>
+                <option value="1">CC</option>
+                <option value="2">TI</option>
+                <option value="3">CE</option>
+              </select>-->
+              <button type="submit" class="btn btn-outline-dark">Registrar</button>
+              </div>
+            </div>
+          </form>
+      </div>
       </div>
       <div class = "container text-success"  *ngSwitchCase ="'acudientes01'" >
         <h2 class="elegantshadow">ACUDIENTES</h2>
@@ -190,6 +276,7 @@
                 <th scope="col">Dirección</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Forma de Pago</th>
+                <th scope="col">Eliminar</th>
               </tr>
             </thead>
             <tbody *ngFor="let acudiente of acudientes">
@@ -216,7 +303,65 @@
               </tr>
             </tbody>
           </table>
-
+          <div>
+            <button class="btn btn-outline-secondary" type="submit" (click)="reqAcudiente()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="margin-right: 0.6rem"> 
+              <strong>Nuevo Acudiente</strong>
+            </button>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                  <h4 id="offcanvasRightLabel">Ingresar Nuevo Acudiente</h4>
+                  <hr>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Nombre </label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Name" formControlName="nombre" aria-label="First name">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Apellido</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Last name" formControlName="apellido" aria-label="Last name">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Cédula de ciudadanía</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="identification" formControlName="cedula" aria-label="identification">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Correo Electronico</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="email" formControlName="correo" aria-label="email">
+                  </div>  
+                </div>
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Dirección</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="adress" formControlName="direccion" aria-label="adress">
+                  </div>  
+                </div>
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Telefono</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="telephone" formControlName="tenefono" aria-label="telephone">
+                  </div>  
+                </div>
+                <div class="mb-3">
+                  <label for="validationServer01" class="form-label">Forma de pago</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="pay" formControlName="pago" aria-label="pay">
+                  </div>  
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Registrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
       </div>
       <div class = "container text-success"  *ngSwitchCase ="'inventario01'" >
         <h2 class="elegantshadow">INVENTARIO</h2>       
@@ -236,7 +381,6 @@
                 <td >{{inventario.nombre}}</td>
                 <td >{{inventario.precio}}</td>
                 <td >{{inventario.cantidad}}</td>
-               
               <td> 
                   <button class="btn" type="button" (click)="eliminarInventario(inventario.articuloid)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -251,9 +395,40 @@
               </tr>
             </tbody>
           </table>
-
-      </div>
-      
+          <button class="btn btn-outline-secondary" type="submit" (click)="reqInventario()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="margin-right: 0.6rem"> 
+            <strong>Nuevo Producto</strong>
+          </button>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+                <h4 id="offcanvasRightLabel">Ingresar Nuevo Articulo</h4>
+                <hr>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Nombre producto</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Name" formControlName="nombre" aria-label="name">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Precio</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="price" formControlName="precio" aria-label="price">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="validationServer01" class="form-label">Cantidad</label>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="amount" formControlName="cantidad" aria-label="amount">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-outline-dark">Ingresar</button>
+              </div>
+            </div>
+          </form>
+        </div>
       <div class = "container text-success"  *ngSwitchCase="'default'">
 
       </div>

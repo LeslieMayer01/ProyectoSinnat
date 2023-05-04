@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../client.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Usuarios } from '../../interface/info.interface';
 import { Estudiantes } from '../../interface/info.interface';
 import { Acudientes } from '../../interface/info.interface';
 import { Inventarios } from '../../interface/info.interface';
 import { environment } from 'src/environments/environment';
+import { Estudiante } from '../../interface/estudiantes.interface';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -27,10 +29,13 @@ export class PanelAdminComponent implements OnInit {
   estudiantes : Estudiantes [] = [];
   acudientes : Acudientes [] = [];
   inventarios : Inventarios [] = [];
+  Estudiante : Estudiantes [] = [];
 
   constructor(
     public client: ClientService,
-    private route:  Router
+    private fb: FormBuilder,
+    private router: Router,
+    private route:ActivatedRoute
   ) { }
 /*let opcion = this.route.snapshot.paramMap.get("opcion");
     console.log(opcion);*/
@@ -44,7 +49,15 @@ export class PanelAdminComponent implements OnInit {
         console.log(error.status);
         }
       )
-
+    this.client.getRequestdatosUsuarios().subscribe(
+      (res:any)=>{
+        this.usuarios = res.usuarios;
+      },
+      (error:any)=>{
+        console.log(error.status);
+      }
+    )
+  
     this.client.getRequestdatosEstudiantes().subscribe(
       (res:any)=>{
         this.estudiantes = res.estudiantes;
@@ -62,6 +75,7 @@ export class PanelAdminComponent implements OnInit {
         console.log(error.status);
       }
     )
+
     this.client.getRequestdatosInventario().subscribe(
       (res:any)=>{
         this.inventarios = res.inventarios;
@@ -71,17 +85,17 @@ export class PanelAdminComponent implements OnInit {
       }
     )
 
-    this.client.getRequestUsuario().subscribe(
-      (res:any)=>{
-        this.usuarios = res.usuario;
-        console.log(this.usuarios);
-      },
-      (error:any)=>{
-        console.log(error.status);
-      }
-    )
+    this.form = this.fb.group({
+      nombre: ['', Validators.required],
+      email: ['', Validators.email],
+      tipodoc: ['', Validators.required],
+      documento: ['', Validators.required],
+      observaciones: ['', Validators.required],
+     
+    });
         
   }
+  
   // eliminarUsuario(id:number){
   //   console.log("Hago peticion por delete al server para eliminar el user de id: ", id);
   // }
@@ -128,7 +142,7 @@ export class PanelAdminComponent implements OnInit {
             '',
             'success'
           )
-          this.route.navigate(['/panelAdmin']);
+          this.router.navigate(['/panelAdmin']);
         },
         (error: any)=>{
           Swal.fire(
@@ -140,39 +154,6 @@ export class PanelAdminComponent implements OnInit {
         })
   }
 
-  async onSubmit(){
-    if (this.form.valid) {
-
-      let data = {
-        usuario: this.form.value.administradorid,
-        nombres: this.form.value.usuario,
-        correo: this.form.value.correo,
-        telefono: this.form.value.telefono,
-        password: this.form.value.password
-      }
-       this.load = false;
-       this.client.postRequestSendForm(`${this.BASE_API}/usuarios`, data).subscribe(
-        (response:any)=>{
-          console.log(response);
-          Swal.fire(
-            'Su registro ha sido exitoso!',
-            '',
-            'success'
-          )
-          this.route.navigate(['']);
-        },
-        (error: any)=>{
-          Swal.fire(
-            'Su registro no ha sido exitoso!',
-            'Intentalo nuevamente!',
-            'error'
-          )
-          console.log(error.status);          
-        })
-    }else{
-      console.log("Form error");
-    }
-  }
   eliminarEstudiante(id:any){
     this.client.delete(`${this.BASE_API}/deleteEstudiante?id=${id}`)
         .subscribe( (response:any)=>{
@@ -211,7 +192,7 @@ export class PanelAdminComponent implements OnInit {
             '',
             'success'
           )
-          this.route.navigate(['/panelAdmin']);
+          this.router.navigate(['/panelAdmin']);
         },
         (error: any)=>{
           Swal.fire(
@@ -261,7 +242,7 @@ export class PanelAdminComponent implements OnInit {
             '',
             'success'
           )
-          this.route.navigate(['panelAdmin']);
+          this.router.navigate(['panelAdmin']);
         },
         (error: any)=>{
           Swal.fire(
@@ -311,7 +292,7 @@ export class PanelAdminComponent implements OnInit {
             '',
             'success'
           )
-          this.route.navigate(['/panelAdmin']);
+          this.router.navigate(['/panelAdmin']);
         },
         (error: any)=>{
           Swal.fire(
@@ -322,6 +303,85 @@ export class PanelAdminComponent implements OnInit {
           console.log(error.status);          
         })
   }
- 
+  async onSubmit(){
+    this.route.queryParams.subscribe(params => {
+      if (this.form.valid) {
+        let dataNewStudent = {
+          nombre: this.form.value.nombre,
+          identificacion: this.form.value.identificacion,
+          edad: this.form.value.edad,
+          fechaDeNacimiento: this.form.value.fechaDeNacimiento,        
+          ultimoGrado: this.form.value.ultimoGrado,
+          escuela: this.form.value.escuela,
+          referido: this.form.value.referido,
+          nombreReferido: this.form.value.nombreReferido,
+          horarioDia: this.form.value.horarioDia,
+          horarioHora: this.form.value.horarioHora,
+          Acudiente: this.form.value.Acudiente,
+        }
+        this.load = false;
+        this.client.postRequestSendForm(`${this.BASE_API}/Estudiantes`,dataNewStudent
+        ).subscribe(
+          (response:any)=>{
+            this.load = true;
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title: 'se registro correctamente!',
+              showConfirmButton: false,
+              timer: 4000
+            })
+            console.log(response);
+           this.router.navigate(['/panel-admin']);
+          },
+          (error: any)=>{
+            console.log(error.status); 
+            
+            Swal.fire({
+              icon: 'info',
+              title: 'Error al enviar tú solicitud',
+              text: 'Por favor registrate o inicia sesión',
+            })
+          })
+      }else{
+        console.log("Form error");
+        Swal.fire({
+          icon: 'info',
+          title: 'Error al enviar tú solicitud',
+          text: 'Por favor verifica los datos ingresados',
+        })
+      };
+      });
+    }
+    reqEstudiante(){
+      this.client.getReqEstudiante(`${this.BASE_API}/addEstudiante`).subscribe(
+      (response: any) => {
+          console.log(response);
+      },
+      (error) => {
+        console.log(error.status);
+        }
+      )
+    }
+    reqAcudiente(){
+      this.client.getReqAcudiente(`${this.BASE_API}/addAcudiente`).subscribe(
+      (response: any) => {
+          console.log(response);    
+      },
+      (error) => {
+        console.log(error.status);
+        }
+      )
+    }
+    reqInventario(){
+      this.client.getReqInventario(`${this.BASE_API}/addInventario`).subscribe(
+      (response: any) => {
+          console.log(response);
+      },
+      (error) => {
+        console.log(error.status);
+        }
+      )
+    }
 }
 

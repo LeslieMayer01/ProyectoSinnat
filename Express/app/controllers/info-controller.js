@@ -48,9 +48,8 @@ let productos = async (req, res) => {
   db.productosInfo()
   .then((result) => {
     return res.status(200).json({
-     
+      inventarios: result
     });
-    
   })
   .catch((err) => {
     console.log(err);

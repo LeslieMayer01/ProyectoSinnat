@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import { Estudiantes } from './interface/info.interface';
 import { Acudientes } from './interface/info.interface';
 import { Inventarios } from './interface/info.interface';
+import { Estudiante } from './interface/estudiantes.interface';
 import { environment } from 'src/environments/environment';
 
 
@@ -17,6 +18,10 @@ export class ClientService {
   inventarios:Inventarios [] = [];
   constructor(private http: HttpClient) { }
 
+  getRequestdatosUsuarios() {
+    const result = this.http.get(`${this.BASE_API}/UsuariosInfo`)  
+    return this.http.get(`${this.BASE_API}/UsuariosInfo`)
+  }
   getRequestdatosEstudiantes() {
     const result = this.http.get(`${this.BASE_API}/estudiantesInfo`)
     return this.http.get(`${this.BASE_API}/estudiantesInfo`)
@@ -42,7 +47,6 @@ export class ClientService {
   }
  
   getRequestEstudiante() {
- 
     return this.http.get(`${this.BASE_API}/estudiantesInfo`)
   }
   getRequestUsuario() {
@@ -127,14 +131,7 @@ export class ClientService {
     return this.http.get(route,config)
   }
 
-  getReqAdoptar(route:string){
-    let config:any={
-      responseType:"json"
-    }
-    const header =new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    config["headers"]=header;
-    return this.http.get(route,config)
-  }
+
   
   getRequestLista(route:string){
     let config:any={
@@ -144,17 +141,6 @@ export class ClientService {
     config["headers"]=header;
     return this.http.get(route,config)
   }
-
-  getReqInventario(route:string, data?:any){
-    let config:any={
-      responseType:"json"
-    }
-    const header =new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    config["headers"]=header; 
-    return this.http.post(route, data, config)
-  }
- 
-
 
   //metodo que recibe como parametro una url y realiza la peticion con metodo GET
   postRequestAllProducts(route: string, data?: any) {
@@ -190,7 +176,15 @@ export class ClientService {
     //Notese que como segundo parametro se pasa la configuracion de la request
     return this.http.get(route, config);
   }
-  
+  postRequestCreateUsuario(route: string, data?:any) {
+    let config:any = {
+      responseType: "json"
+    }
+    const header = new HttpHeaders().set('Authorization', '57ydf544ljka559ahjkfgd1');
+    config["header"] = header;
+    //Notese que como tercer parametro se pasa la configuracion de la request
+    return this.http.post(route, data, config);
+  }
 
 
   //metodo que recibe como parametro una url y un json a ser enviado. Esta solicitud se hace con metodo POST
@@ -257,5 +251,32 @@ export class ClientService {
   update(route: string, data?:any) {
     return this.http.put(route,data)
   }
-  
+  create(route: string, data?:any) {
+    return this.http.put(route,data)
+  }
+
+  getReqEstudiante(route:string){
+    let config:any={
+      responseType:"json"
+    }
+    const header =new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    config["headers"]=header;
+    return this.http.get(route,config)
+  }
+  getReqAcudiente(route:string){
+    let config:any={
+      responseType:"json"
+    }
+    const header =new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    config["headers"]=header;
+    return this.http.get(route,config)
+  }
+  getReqInventario(route:string){
+    let config:any={
+      responseType:"json"
+    }
+    const header =new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
+    config["headers"]=header;
+    return this.http.get(route,config)
+  }
 }

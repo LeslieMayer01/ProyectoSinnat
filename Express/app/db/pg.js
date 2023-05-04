@@ -227,6 +227,26 @@ function productos(data){
   });
 }
 
+function usuariosInfo(){
+  return new Promise((resolve,reject)=>{
+    const client = connection();
+    client.connect((err) => {
+      if (err) throw err;
+      console.log("Connected to PG Server!");
+    });
+
+    client.query('SELECT * FROM administrador').then(response => {
+      console.log(response.rows)
+      resolve(response.rows);
+      client.end();
+    }).catch(err =>{
+      console.log(err);
+      client.end();
+    })
+    
+  });
+}
+
 function estudiantesInfo(){
   return new Promise((resolve,reject)=>{
     const client = connection();
@@ -465,7 +485,7 @@ module.exports = {
     deleteAcudientes,
     //administrador,
     loginAdmin,
-    //usuariosInfo,
+    usuariosInfo,
     estudiantesInfo,
     acudientesInfo,
     productosInfo,

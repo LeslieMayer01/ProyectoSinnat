@@ -51,7 +51,7 @@ function changePassword(data) {
 }
 
 function loginAdmin(data){
-  return new Promise((resolve,reject)=>{
+  {/**return new Promise((resolve,reject)=>{
     const mysqlConnection = connection();
     mysqlConnection.connect((err) => {
       if (err) throw err;
@@ -66,6 +66,25 @@ function loginAdmin(data){
     mysqlConnection.end();
     resolve(result);
   });
+  });/** */}
+
+  return new Promise((resolve,reject)=>{
+    const client = connection();
+    client.connect((err) => {
+      if (err) throw err;
+      console.log("Connected to PG Server!");
+    });
+    console.log(`SELECT administradorid, usuario,  password FROM administrador WHERE usuario='${data.usuario}' AND password = '${data.password}'`)
+    //client.query(`SELECT * FROM estudiantes WHERE estudianteid =${data}`).then(response => {
+    client.query(`SELECT administradorid, usuario,  password FROM administrador WHERE usuario='${data.usuario}' AND password = '${data.password}'`).then(response => {
+      console.log(response.rows)
+      resolve(response.rows);
+      client.end();
+    }).catch(err =>{
+      console.log(err);
+      client.end();
+    })
+    
   });
 }
 

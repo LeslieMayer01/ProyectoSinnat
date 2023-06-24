@@ -20,23 +20,23 @@
               </div>
         
               <div>
-                <form class="formato">
+                <form class="formato" [formGroup]="form" (ngSubmit)="onSubmit()">
                   <div class="usuario">
                     <div class="img_user">
                       <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-128.png" alt="logo_user" width="25" class="logo_user">
                       <label id="usuario_label">Usuario</label>
                     </div>
-                    <input type="text" name="usuario" id="usuario">
+                    <input type="text" name="usuario" id="usuario" formControlName="user">
                   </div>
                   <div class="pass">
                     <div class="img_pass">
                       <img src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/lock_512pxGREY.png" alt="logo_pass" width="25" class="logo_pass">
                       <label id="password_label">Contraseña</label>
                     </div>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" formControlName="password">
                   </div>
                   <div class="enviar">
-                    <a href="http://localhost:4200/panelAdmin" class="btn btn-success">Enviar</a>
+                    <button type="submit">Enviar</button>
                   </div>
                 </form>
               </div>

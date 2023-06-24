@@ -4,7 +4,7 @@ const nJwt = require('njwt');
 
 validatorParams = [
         check('usuario').isString(),
-        check('password').isLength({ min: 8, max: 15}),
+        check('password').isLength({ min: 4, max: 15}),
       ];
 
       

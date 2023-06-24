@@ -279,4 +279,12 @@ export class ClientService {
     config["headers"]=header;
     return this.http.get(route,config)
   }
+
+
+  loginAdmin(route: string, data?:any) {
+    
+    
+    return this.http.post(route,data)
+    console.log(data);
+  }
 }

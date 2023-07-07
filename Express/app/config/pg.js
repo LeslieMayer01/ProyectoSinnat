@@ -2,8 +2,8 @@
 const CREDENTIALS = {
   host     : 'localhost',
   user     : 'postgres',
-  password : '10918268',
-  database : 'SINNAT',
+  password : 'root',
+  database : 'postgres',
   port: 5432
 }
 
